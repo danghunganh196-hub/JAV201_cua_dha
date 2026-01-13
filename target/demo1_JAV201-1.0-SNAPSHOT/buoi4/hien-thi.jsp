@@ -12,12 +12,12 @@
     <title>buoi4</title>
 </head>
 <body>
-<form action="/giang-vien/them" method="post">
+<form action="/truong-hoc/them" method="post">
     Id: <input type="text" readonly placeholder="ID TU SINH" name="id"><br>
     Ten giang vien: <input type="text" name="tenGiangVien"><br>
     Tuoi: <input type="number" name="tuoi"><br>
-    Gioi tinh: <input type="radio" name="gioiTinh" value="true" checked>Nữ
-    <input type="radio" name="gioiTinh" value="false">Nam<br>
+    Gioi tinh: <input type="radio" name="gioiTinh" value="true" checked>
+    <input type="radio" name="gioiTinh" value="false"><br>
 <%--    Id truong: <input type="number" name="truong_id">--%>
     Ten truong: <input type="text" name="tenTruong"><br>
     Dia chi: <input type="text" name="diaChi"><br>
@@ -31,7 +31,6 @@
         <th>Gioi tinh</th>
         <th>Ten truong</th>
         <th>Dia chi</th>
-        <th>Hanh dong</th>
         </thead>
         <tbody>
         <c:forEach items="${listGiangVien}" var = "gv">
@@ -42,9 +41,6 @@
                 <td>${gv.gioiTinh == false ? "Nam" : "Nữ"}</td>
                 <td>${gv.truongHoc.tenTruong}</td>
                 <td>${gv.truongHoc.diaChi}</td>
-                <td><button><a href="/giang-vien/view-update?id=${gv.id}">Update</button></a>
-                <button><a href="/giang-vien/xoa?id=${gv.id}">Delete</a></button>
-                </td>
             </tr>
         </c:forEach>
         </tbody>
