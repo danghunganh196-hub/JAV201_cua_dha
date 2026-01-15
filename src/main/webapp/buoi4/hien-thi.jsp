@@ -19,8 +19,24 @@
     Gioi tinh: <input type="radio" name="gioiTinh" value="true" checked>Nữ
     <input type="radio" name="gioiTinh" value="false">Nam<br>
 <%--    Id truong: <input type="number" name="truong_id">--%>
-    Ten truong: <input type="text" name="tenTruong"><br>
-    Dia chi: <input type="text" name="diaChi"><br>
+<%--    Ten truong: <input type="text" name="tenTruong"><br>--%>
+    Ten truong:
+    <select name="truongId">
+        <c:forEach items="${listTruongHoc}" var="th">
+            <option value="${th.id}}">
+                    ${th.tenTruong}
+            </option>
+        </c:forEach>
+    </select>
+    <br>
+    Dia chi:     <select name="diaChi">
+    <c:forEach items="${listGiangVien}" var="gv">
+        <option>
+                ${gv.truongHoc.diaChi}
+        </option>
+    </c:forEach>
+</select>
+    <br>
     <button>Save</button>
 </form>
     <table border="1" style="border-collapse: collapse">
@@ -42,7 +58,7 @@
                 <td>${gv.gioiTinh == false ? "Nam" : "Nữ"}</td>
                 <td>${gv.truongHoc.tenTruong}</td>
                 <td>${gv.truongHoc.diaChi}</td>
-                <td><button><a href="/giang-vien/view-update?id=${gv.id}">Update</button></a>
+                <td><button><a href="/giang-vien/view-update?id=${gv.id}">Update</a></button>
                 <button><a href="/giang-vien/xoa?id=${gv.id}">Delete</a></button>
                 </td>
             </tr>
