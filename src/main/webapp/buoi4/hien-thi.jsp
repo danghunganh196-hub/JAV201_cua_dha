@@ -18,24 +18,14 @@
     Tuoi: <input type="number" name="tuoi"><br>
     Gioi tinh: <input type="radio" name="gioiTinh" value="true" checked>Nữ
     <input type="radio" name="gioiTinh" value="false">Nam<br>
-<%--    Id truong: <input type="number" name="truong_id">--%>
-<%--    Ten truong: <input type="text" name="tenTruong"><br>--%>
     Ten truong:
     <select name="truongId">
         <c:forEach items="${listTruongHoc}" var="th">
-            <option value="${th.id}}">
+            <option value="${th.id}">
                     ${th.tenTruong}
             </option>
         </c:forEach>
     </select>
-    <br>
-    Dia chi:     <select name="diaChi">
-    <c:forEach items="${listGiangVien}" var="gv">
-        <option>
-                ${gv.truongHoc.diaChi}
-        </option>
-    </c:forEach>
-</select>
     <br>
     <button>Save</button>
 </form>

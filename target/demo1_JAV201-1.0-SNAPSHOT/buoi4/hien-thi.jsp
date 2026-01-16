@@ -23,20 +23,22 @@
     Ten truong:
     <select name="truongId">
         <c:forEach items="${listTruongHoc}" var="th">
-            <option value="${th.id}}">
+            <option value="${th.id}">
                     ${th.tenTruong}
             </option>
         </c:forEach>
     </select>
     <br>
-    Dia chi:     <select name="diaChi">
-    <c:forEach items="${listGiangVien}" var="gv">
-        <option>
-                ${gv.truongHoc.diaChi}
-        </option>
-    </c:forEach>
-</select>
-    <br>
+<%--    Dia chi:--%>
+<%--    <select name="diaChi">--%>
+<%--    <c:forEach items="${listTruongHoc}" var="th">--%>
+<%--        <option value="${th.id}">--%>
+<%--                ${th.diaChi}--%>
+<%--        </option>--%>
+<%--    </c:forEach>--%>
+<%--</select>--%>
+<%--    <input type="text" name="diaChi" value="${diaChi}">--%>
+<%--    <br>--%>
     <button>Save</button>
 </form>
     <table border="1" style="border-collapse: collapse">

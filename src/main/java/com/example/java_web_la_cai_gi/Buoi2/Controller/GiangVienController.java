@@ -44,6 +44,12 @@ public class GiangVienController extends HttpServlet {
     private void hienThi(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("listTruongHoc",truongHocRepository.getAll());
 
+        String truongId = req.getParameter("truongId");
+        if(truongId != null){
+            TruongHoc truongHoc = truongHocRepository.getByID(Integer.valueOf(truongId));
+            req.setAttribute("diaChi",truongHoc.getDiaChi());
+        }
+
         req.setAttribute("listGiangVien",giangVienRepository.getAll());
         req.getRequestDispatcher("/buoi4/hien-thi.jsp").forward(req, resp);
     }
@@ -57,24 +63,17 @@ public class GiangVienController extends HttpServlet {
     }
 
     private void them(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-//        TruongHoc truongHoc = new TruongHoc();
-        Integer id = Integer.valueOf(req.getParameter(req.getParameter("truongId")));
-        TruongHoc truongHoc = truongHocRepository.getByID(id);
+        Integer truongId = Integer.valueOf(req.getParameter("truongId"));
+        TruongHoc truongHoc = truongHocRepository.getByID(truongId);
 
         String tenGiangVien = req.getParameter("tenGiangVien");
         Integer tuoi = Integer.valueOf(req.getParameter("tuoi"));
         Boolean gioiTinh = Boolean.valueOf(req.getParameter("gioiTinh"));
 
-        String tenTruong = req.getParameter("tenTruong");
-        String diaChi = req.getParameter("diaChi");
-
         GiangVien giangVien = new GiangVien();
         giangVien.setTenGiangVien(tenGiangVien);
         giangVien.setTuoi(tuoi);
         giangVien.setGioiTinh(gioiTinh);
-
-//        truongHoc.setTenTruong(tenTruong);
-//        truongHoc.setDiaChi(diaChi);
 
         giangVien.setTruongHoc(truongHoc);
 
