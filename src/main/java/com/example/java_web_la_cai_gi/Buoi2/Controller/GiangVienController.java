@@ -28,7 +28,15 @@ public class GiangVienController extends HttpServlet {
             hienThi(req,resp);
         }else if(uri.contains("view-update")){
             viewUpdate(req, resp);
+        }else if(uri.contains("xoa")){
+            xoa(req, resp);
         }
+    }
+
+    private void xoa(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Integer id = Integer.valueOf(req.getParameter("id"));
+        giangVienRepository.xoa(id);
+        resp.sendRedirect("/giang-vien/hien-thi");
     }
 
     private void viewUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,9 +44,10 @@ public class GiangVienController extends HttpServlet {
 
         GiangVien gv = giangVienRepository.getByID(id);
 
-        req.setAttribute("gv_detail", id);
+        req.setAttribute("gv", gv);
         req.setAttribute("listGiangVien",giangVienRepository.getAll());
-        req.getRequestDispatcher("/buoi4/hien-thi.jsp").forward(req, resp);
+        req.setAttribute("listTruongHoc",truongHocRepository.getAll());
+        req.getRequestDispatcher("/buoi4/view-update.jsp").forward(req, resp);
     }
 
     private void hienThi(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -59,7 +68,31 @@ public class GiangVienController extends HttpServlet {
         String uri = req.getRequestURI();
         if(uri.contains("them")){
             them(req, resp);
+        }else if(uri.contains("sua")){
+            sua(req, resp);
         }
+    }
+
+    private void sua(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Integer truongId = Integer.valueOf(req.getParameter("truongId"));
+        TruongHoc truongHoc = truongHocRepository.getByID(truongId);
+
+        Integer id = Integer.valueOf(req.getParameter("id"));
+        String tenGiangVien = req.getParameter("tenGiangVien");
+        Integer tuoi = Integer.valueOf(req.getParameter("tuoi"));
+        Boolean gioiTinh = Boolean.valueOf(req.getParameter("gioiTinh"));
+
+        GiangVien giangVien = giangVienRepository.getByID(id);
+//        giangVien.setId(id);
+        giangVien.setTenGiangVien(tenGiangVien);
+        giangVien.setTuoi(tuoi);
+        giangVien.setGioiTinh(gioiTinh);
+
+        giangVien.setTruongHoc(truongHoc);
+
+        giangVienRepository.sua(giangVien);
+
+        resp.sendRedirect("/giang-vien/hien-thi");
     }
 
     private void them(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -81,4 +114,6 @@ public class GiangVienController extends HttpServlet {
 
         resp.sendRedirect("/giang-vien/hien-thi");
     }
+
+
 }

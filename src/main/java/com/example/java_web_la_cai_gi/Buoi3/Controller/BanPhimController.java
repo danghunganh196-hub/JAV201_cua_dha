@@ -49,7 +49,7 @@ public class BanPhimController extends HttpServlet{
 
         req.setAttribute("bp", banPhim);
         req.setAttribute("listBanPhim",banPhimRepository.getAll());
-        req.getRequestDispatcher("/buoi3/view-update.jsp").forward(req,resp);
+        req.getRequestDispatcher("/buoi3/hien-thi.jsp").forward(req,resp);
     }
 
     private void hienThi(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

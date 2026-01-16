@@ -31,6 +31,7 @@
 </form>
     <table border="1" style="border-collapse: collapse">
         <thead>
+        <tr>
         <th>Id</th>
         <th>Ten giang vien</th>
         <th>Tuoi</th>
@@ -38,21 +39,22 @@
         <th>Ten truong</th>
         <th>Dia chi</th>
         <th>Hanh dong</th>
+        </tr>
         </thead>
         <tbody>
-        <c:forEach items="${listGiangVien}" var = "gv">
-            <tr>
-                <td>${gv.id}</td>
-                <td>${gv.tenGiangVien}</td>
-                <td>${gv.tuoi}</td>
-                <td>${gv.gioiTinh == false ? "Nam" : "Nữ"}</td>
-                <td>${gv.truongHoc.tenTruong}</td>
-                <td>${gv.truongHoc.diaChi}</td>
-                <td><button><a href="/giang-vien/view-update?id=${gv.id}">Update</a></button>
-                <button><a href="/giang-vien/xoa?id=${gv.id}">Delete</a></button>
-                </td>
-            </tr>
-        </c:forEach>
+            <c:forEach items="${listGiangVien}" var = "gv">
+                <tr>
+                    <td>${gv.id}</td>
+                    <td>${gv.tenGiangVien}</td>
+                    <td>${gv.tuoi}</td>
+                    <td>${gv.gioiTinh == false ? "Nam" : "Nữ"}</td>
+                    <td>${gv.truongHoc.tenTruong}</td>
+                    <td>${gv.truongHoc.diaChi}</td>
+                    <td><a href="/giang-vien/view-update?id=${gv.id}"><button>Update</button></a>
+                    <a href="/giang-vien/xoa?id=${gv.id}"><button>Delete</button></a>
+                    </td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 </body>
