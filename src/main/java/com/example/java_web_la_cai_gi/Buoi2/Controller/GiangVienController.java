@@ -53,11 +53,11 @@ public class GiangVienController extends HttpServlet {
     private void hienThi(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("listTruongHoc",truongHocRepository.getAll());
 
-        String truongId = req.getParameter("truongId");
-        if(truongId != null){
-            TruongHoc truongHoc = truongHocRepository.getByID(Integer.valueOf(truongId));
-            req.setAttribute("diaChi",truongHoc.getDiaChi());
-        }
+//        String truongId = req.getParameter("truongId");
+//        if(truongId != null){
+//            TruongHoc truongHoc = truongHocRepository.getByID(Integer.valueOf(truongId));
+//            req.setAttribute("diaChi",truongHoc.getDiaChi());
+//        }
 
         req.setAttribute("listGiangVien",giangVienRepository.getAll());
         req.getRequestDispatcher("/buoi4/hien-thi.jsp").forward(req, resp);
