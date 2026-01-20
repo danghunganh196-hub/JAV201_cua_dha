@@ -12,18 +12,22 @@
     <title>buoi4</title>
 </head>
 <body>
+<form action="/giang-vien/tim-kiem" method="get">
+    <h1>Form tim kiem</h1>
+    Ten can tim: <input type="text" name="tenGiangVien" required><br>
+    <button>Find</button>
+</form>
 <form action="/giang-vien/them" method="post">
+    <h1>Form them</h1>
     Id: <input type="text" readonly placeholder="ID TU SINH" name="id"><br>
-    Ten giang vien: <input type="text" name="tenGiangVien"><br>
-    Tuoi: <input type="number" name="tuoi"><br>
-    Gioi tinh: <input type="radio" name="gioiTinh" value="true" checked>Nữ
+    Ten giang vien: <input type="text" name="tenGiangVien" required><br>
+    Tuoi: <input type="number" name="tuoi" required><br>
+    Gioi tinh: <input type="radio" name="gioiTinh" value="true">Nữ
     <input type="radio" name="gioiTinh" value="false">Nam<br>
     Ten truong:
     <select name="truongId">
         <c:forEach items="${listTruongHoc}" var="th">
-            <option value="${th.id}">
-                    ${th.tenTruong}
-            </option>
+            <option value="${th.id}" label="${th.tenTruong}"></option>
         </c:forEach>
     </select>
     <br>

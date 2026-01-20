@@ -2,6 +2,7 @@ package com.example.java_web_la_cai_gi.Buoi2.Repository;
 
 import com.example.java_web_la_cai_gi.Buoi2.Model.GiangVien;
 import com.example.java_web_la_cai_gi.Buoi2.Util.HibernateConfig;
+import jakarta.persistence.Query;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -52,5 +53,11 @@ public class GiangVienRepository {
             e.printStackTrace();
             session.getTransaction().rollback();
         }
+    }
+
+    public List<GiangVien> timKiem(String ten){
+        Query query = session.createQuery("SELECT gv FROM GiangVien gv WHERE gv.tenGiangVien LIKE :ten"); // JPQL
+        query.setParameter("ten","%" + ten + "%");
+        return query.getResultList();
     }
 }

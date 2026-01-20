@@ -16,14 +16,12 @@
     Id: <input type="hidden" name="id" value="${gv.id}"><br>
     Ten giang vien: <input type="text" name="tenGiangVien" value="${gv.tenGiangVien}"><br>
     Tuoi: <input type="number" name="tuoi" value="${gv.tuoi}"><br>
-    Gioi tinh: <input type="radio" name="gioiTinh" value="true" checked>Nữ
+    Gioi tinh: <input type="radio" name="gioiTinh" value="true">Nữ
     <input type="radio" name="gioiTinh" value="false">Nam<br>
     Ten truong:
     <select name="truongId">
         <c:forEach items="${listTruongHoc}" var="th">
-            <option value="${th.id}">
-                    ${th.tenTruong}
-            </option>
+            <option value="${th.id}" label="${th.tenTruong}" ${gv.truongHoc.id == th.id ? "selected" : ""}></option>
         </c:forEach>
     </select>
     <br>

@@ -16,7 +16,8 @@ import java.io.IOException;
         "/giang-vien/view-update",
         "/giang-vien/them",
         "/giang-vien/xoa",
-        "/giang-vien/sua"
+        "/giang-vien/sua",
+        "/giang-vien/tim-kiem"
 })
 public class GiangVienController extends HttpServlet {
     GiangVienRepository giangVienRepository = new GiangVienRepository();
@@ -30,7 +31,16 @@ public class GiangVienController extends HttpServlet {
             viewUpdate(req, resp);
         }else if(uri.contains("xoa")){
             xoa(req, resp);
+        }else if(uri.contains("tim-kiem")){
+            timKiem(req,resp);
         }
+    }
+
+    private void timKiem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String tenGiangVien = req.getParameter("tenGiangVien");
+        req.setAttribute("listGiangVien",giangVienRepository.timKiem(tenGiangVien));
+        req.setAttribute("listTruongHoc",truongHocRepository.getAll());
+        req.getRequestDispatcher("/buoi4/hien-thi.jsp").forward(req, resp);
     }
 
     private void xoa(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -82,13 +92,13 @@ public class GiangVienController extends HttpServlet {
         Integer tuoi = Integer.valueOf(req.getParameter("tuoi"));
         Boolean gioiTinh = Boolean.valueOf(req.getParameter("gioiTinh"));
 
-        GiangVien giangVien = giangVienRepository.getByID(id);
+        GiangVien giangVien = new GiangVien(id,tenGiangVien,tuoi,gioiTinh,truongHoc);
 //        giangVien.setId(id);
-        giangVien.setTenGiangVien(tenGiangVien);
-        giangVien.setTuoi(tuoi);
-        giangVien.setGioiTinh(gioiTinh);
+//        giangVien.setTenGiangVien(tenGiangVien);
+//        giangVien.setTuoi(tuoi);
+//        giangVien.setGioiTinh(gioiTinh);
 
-        giangVien.setTruongHoc(truongHoc);
+//        giangVien.setTruongHoc(truongHoc);
 
         giangVienRepository.sua(giangVien);
 
@@ -103,12 +113,12 @@ public class GiangVienController extends HttpServlet {
         Integer tuoi = Integer.valueOf(req.getParameter("tuoi"));
         Boolean gioiTinh = Boolean.valueOf(req.getParameter("gioiTinh"));
 
-        GiangVien giangVien = new GiangVien();
-        giangVien.setTenGiangVien(tenGiangVien);
-        giangVien.setTuoi(tuoi);
-        giangVien.setGioiTinh(gioiTinh);
-
-        giangVien.setTruongHoc(truongHoc);
+        GiangVien giangVien = new GiangVien(null, tenGiangVien,tuoi,gioiTinh,truongHoc);
+//        giangVien.setTenGiangVien(tenGiangVien);
+//        giangVien.setTuoi(tuoi);
+//        giangVien.setGioiTinh(gioiTinh);
+//
+//        giangVien.setTruongHoc(truongHoc);
 
         giangVienRepository.them(giangVien);
 
