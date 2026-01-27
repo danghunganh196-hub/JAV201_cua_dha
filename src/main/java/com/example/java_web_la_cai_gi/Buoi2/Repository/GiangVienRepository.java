@@ -60,4 +60,11 @@ public class GiangVienRepository {
         query.setParameter("ten","%" + ten + "%");
         return query.getResultList();
     }
+
+    public List<GiangVien> phanTrang(int page, int size){
+        Query query = session.createQuery("SELECT gv FROM GiangVien gv");
+        query.setFirstResult(page * size);
+        query.setMaxResults(size);
+        return query.getResultList();
+    }
 }

@@ -16,8 +16,8 @@
     Id: <input type="hidden" name="id" value="${gv.id}"><br>
     Ten giang vien: <input type="text" name="tenGiangVien" value="${gv.tenGiangVien}"><br>
     Tuoi: <input type="number" name="tuoi" value="${gv.tuoi}"><br>
-    Gioi tinh: <input type="radio" name="gioiTinh" value="true">Nữ
-    <input type="radio" name="gioiTinh" value="false">Nam<br>
+    Gioi tinh: <input type="radio" name="gioiTinh" value="true" ${gv.gioiTinh == true ? "checked" : ""}>Nữ
+    <input type="radio" name="gioiTinh" value="false" ${gv.gioiTinh == false ? "checked" : ""}>Nam<br>
     Ten truong:
     <select name="truongId">
         <c:forEach items="${listTruongHoc}" var="th">

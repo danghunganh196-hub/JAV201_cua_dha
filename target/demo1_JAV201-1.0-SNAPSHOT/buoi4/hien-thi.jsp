@@ -61,5 +61,18 @@
             </c:forEach>
         </tbody>
     </table>
+<a href="/giang-vien/phan-trang?page=0">First</a>
+<a href="/giang-vien/phan-trang?page=${page == 0 ? 0 : page - 1}">Previous</a>
+<a href="/giang-vien/phan-trang?page=${page == totalPages - 1 ? 0 : page + 1}">Next</a>
+<a href="/giang-vien/phan-trang?page=${totalPages - 1}">Last</a> <br> <br>
+
+<a href="/giang-vien/hien-thi">QUAY VE TRANG CHINH</a> <br>
+
+<c:forEach begin="0" end="${totalPages - 1}" varStatus="i">
+    <a href="/giang-vien/phan-trang?page=${i.index}"
+       style="${page == i.index ? "color : red" : ""}">
+            ${i.index + 1}
+    </a>
+</c:forEach>
 </body>
 </html>

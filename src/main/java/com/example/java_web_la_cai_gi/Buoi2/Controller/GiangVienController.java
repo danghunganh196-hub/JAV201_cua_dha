@@ -17,7 +17,8 @@ import java.io.IOException;
         "/giang-vien/them",
         "/giang-vien/xoa",
         "/giang-vien/sua",
-        "/giang-vien/tim-kiem"
+        "/giang-vien/tim-kiem",
+        "/giang-vien/phan-trang"
 })
 public class GiangVienController extends HttpServlet {
     GiangVienRepository giangVienRepository = new GiangVienRepository();
@@ -33,7 +34,26 @@ public class GiangVienController extends HttpServlet {
             xoa(req, resp);
         }else if(uri.contains("tim-kiem")){
             timKiem(req,resp);
+        }else if(uri.contains("phan-trang")){
+            phanTrang(req,resp);
         }
+    }
+
+    private void phanTrang(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int page = 0;
+        int size = 3;
+        if(req.getParameter("page") != null){
+            page = Integer.valueOf(req.getParameter("page"));
+        }
+        req.setAttribute("page", page);
+
+        int totalGiangVien = giangVienRepository.getAll().size();
+        double totalPages = Math.ceil((double) totalGiangVien/size);
+        req.setAttribute("totalPages",(int) totalPages);
+
+        req.setAttribute("listGiangVien",giangVienRepository.phanTrang(page, size));
+        req.setAttribute("listTruongHoc",truongHocRepository.getAll());
+        req.getRequestDispatcher("/buoi4/hien-thi.jsp").forward(req, resp);
     }
 
     private void timKiem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
