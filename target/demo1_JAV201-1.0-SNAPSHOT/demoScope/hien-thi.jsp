@@ -16,7 +16,7 @@
 <body>
 Message tu request scope: ${requestMessage}<br>
 
-Message tu request scope: ${sessionScope.sessionMessage}<br>
+Message tu session scope: ${sessionScope.sessionMessage}<br>
 
 Message tu application scope: ${applicationScope.applicationMessage}<br>
 
